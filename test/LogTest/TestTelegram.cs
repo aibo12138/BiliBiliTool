@@ -19,7 +19,7 @@ namespace LogTest
         public TestTelegram()
         {
             Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
-            Program.PreWorks(new string[] { });
+            Program.Init(new string[] { });
 
             _botToken = Global.ConfigurationRoot["Serilog:WriteTo:3:Args:botToken"];
             _chatId = Global.ConfigurationRoot["Serilog:WriteTo:3:Args:chatId"];
@@ -29,7 +29,7 @@ namespace LogTest
         public void Test2()
         {
             TelegramApiClient client = new TelegramApiClient(_botToken, _chatId);
-            var result = client.PushMessageAsync(LogConstants.Msg).Result;
+            var result = client.PushMessage(LogConstants.Msg);
             Debug.WriteLine(result.Content.ReadAsStringAsync().Result);
 
             System.Console.ReadLine();

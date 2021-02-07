@@ -17,7 +17,7 @@ namespace LogTest
         public TestWorkWeiXin()
         {
             Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
-            Program.PreWorks(new string[] { });
+            Program.Init(new string[] { });
 
             _key = Global.ConfigurationRoot["Serilog:WriteTo:4:Args:webHookUrl"];
         }
@@ -26,7 +26,7 @@ namespace LogTest
         public void Test2()
         {
             WorkWeiXinApiClient client = new WorkWeiXinApiClient(_key);
-            var result = client.PushMessageAsync(LogConstants.Msg).Result;
+            var result = client.PushMessage(LogConstants.Msg);
             Debug.WriteLine(result.Content.ReadAsStringAsync().Result);
 
             System.Console.ReadLine();

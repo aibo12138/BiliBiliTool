@@ -17,7 +17,7 @@ namespace LogTest
         public TestServerChan()
         {
             Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
-            Program.PreWorks(new string[] { });
+            Program.Init(new string[] { });
 
             _scKey = Global.ConfigurationRoot["Serilog:WriteTo:6:Args:scKey"]; ;
         }
@@ -26,7 +26,7 @@ namespace LogTest
         public void Test2()
         {
             ServerChanApiClient client = new ServerChanApiClient(_scKey);
-            var result = client.PushMessageAsync(LogConstants.Msg).Result;
+            var result = client.PushMessage(LogConstants.Msg);
             Debug.WriteLine(result.Content.ReadAsStringAsync().Result);
 
             System.Console.ReadLine();

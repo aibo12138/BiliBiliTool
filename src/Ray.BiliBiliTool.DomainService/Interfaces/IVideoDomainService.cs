@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Ray.BiliBiliTool.Agent.BiliBiliAgent.Dtos;
+using Ray.BiliBiliTool.DomainService.Dtos;
 
 namespace Ray.BiliBiliTool.DomainService.Interfaces
 {
@@ -10,6 +11,13 @@ namespace Ray.BiliBiliTool.DomainService.Interfaces
     /// </summary>
     public interface IVideoDomainService : IDomainService
     {
+        /// <summary>
+        /// 获取视频详情
+        /// </summary>
+        /// <param name="aid"></param>
+        /// <returns></returns>
+        VideoDetail GetVideoDetail(string aid);
+
         /// <summary>
         /// 获取一个随机视频aid
         /// </summary>
@@ -37,13 +45,13 @@ namespace Ray.BiliBiliTool.DomainService.Interfaces
         /// </summary>
         /// <param name="aid"></param>
         /// <param name="dailyTaskStatus"></param>
-        void WatchVideo(string aid, string title = "");
+        void WatchVideo(VideoInfoDto videoInfo);
 
         /// <summary>
         /// 分享
         /// </summary>
         /// <param name="aid"></param>
         /// <param name="dailyTaskStatus"></param>
-        void ShareVideo(string aid, string title = "");
+        void ShareVideo(VideoInfoDto videoInfo);
     }
 }
